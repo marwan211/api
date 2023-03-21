@@ -38,9 +38,18 @@ app.get('/file', function (req, res) {
 // upload endpoint for images
 app.post('/upload', upload.single('image'), function (req, res) {
   const imagePath = req.file.path;
-  console.log('File uploaded successfully');
+  const imageName = req.file.originalname;
 
-  res.send('success');
+  // Move the file to the 'files' folder
+  fs.rename(imagePath, path.join(folderPath, imageName), function (err) {
+    if (err) {
+      console.error(err);
+      res.send('error');
+    } else {
+      console.log('File uploaded successfully');
+      res.send('success');
+    }
+  });
 });
 
 // view endpoint for images
