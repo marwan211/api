@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+// const port = process.env.PORT || 3001;
 
 app.get('/', function (req, res) {
   res.send('Hello World')
@@ -21,12 +22,14 @@ fs.mkdir(folderPath, (err) => {
     fs.writeFile(filePath, 'This is an example text file.', (err) => {
       if (err) {
         console.error(err);
+       res.send("error")
       } else {
         console.log('File created successfully');
+        res.send("success")
       }
     });
   }
-  res.send("done")
+  // res.send("done")
 });
 })
 
