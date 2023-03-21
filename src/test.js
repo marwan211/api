@@ -16,7 +16,9 @@ s="init"
 fs.mkdir(folderPath, (err) => {
   if (err) {
     console.error(err);
+    s=err
   } else {
+    s="file created"
     console.log('Folder created successfully');
     const filePath = path.join(folderPath, 'example.txt');
     fs.writeFile(filePath, 'This is an example text file.', (err) => {
