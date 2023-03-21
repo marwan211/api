@@ -12,7 +12,7 @@ app.get('/file',function(req,res){
 const path = require('path');
 
 const folderPath = path.join(__dirname, 'files');
-
+s="init"
 fs.mkdir(folderPath, (err) => {
   if (err) {
     console.error(err);
@@ -22,16 +22,20 @@ fs.mkdir(folderPath, (err) => {
     fs.writeFile(filePath, 'This is an example text file.', (err) => {
       if (err) {
         console.error(err);
-        res.send('error')
-        alert("file not create");
+        res.write('error')
+        s="error"
+        // alert("file not create");
       } else {
         console.log('File created successfully');
-        alert("file create");
-        res.send('success')
+        // alert("file create");
+        res.write('success')
+        s="success"
+        
       }
     });
   }
-  // res.send("done")
+   res.send(s)
+  //  res.send("done 2")
 });
 })
 
