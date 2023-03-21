@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const app = express();
-
+const folderPath = path.join(__dirname, 'files');
 // Set up multer storage configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -88,7 +88,7 @@ app.get('/view/:filename', function(req, res) {
     }
   });
   app.get('/view', function(req, res) {
-    const directoryPath = path.join(__dirname, 'files');
+    const directoryPath = folderPath
     fs.readdir(directoryPath, function(err, files) {
       if (err) {
         return console.log('Unable to scan directory: ' + err);
@@ -96,7 +96,7 @@ app.get('/view/:filename', function(req, res) {
       const fileNames = files.map(file => {
         return {
           name: file,
-          url: `http://${req.headers.host}/files/${file}`
+          url: `http://${req.headers.host}/filessss/${file}`
         }
       })
       res.send(fileNames);
