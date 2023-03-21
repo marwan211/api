@@ -96,7 +96,7 @@ app.get('/view/:filename', function(req, res) {
       const fileNames = files.map(file => {
         return {
           name: file,
-          url: `http://${req.headers.host}/upload/${file}`
+          url: `http://${req.headers.host}/files/${file}`
         }
       })
       res.send(fileNames);
