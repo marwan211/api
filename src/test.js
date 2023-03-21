@@ -7,7 +7,7 @@ const app = express();
 // Set up multer storage configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'upload/');
+    cb(null, 'files/');
   },
   filename: function (req, file, cb) {
     const ext = path.extname(file.originalname);
@@ -53,7 +53,7 @@ app.post('/upload', function (req, res) {
 
 app.get('/view/:filename', function(req, res) {
     const filename = req.params.filename;
-    const imagePath = path.join(__dirname, 'upload', filename);
+    const imagePath = path.join(__dirname, 'files', filename);
   
     // Check if file exists
     if (fs.existsSync(imagePath)) {
@@ -88,7 +88,7 @@ app.get('/view/:filename', function(req, res) {
     }
   });
   app.get('/view', function(req, res) {
-    const directoryPath = path.join(__dirname, 'upload');
+    const directoryPath = path.join(__dirname, 'files');
     fs.readdir(directoryPath, function(err, files) {
       if (err) {
         return console.log('Unable to scan directory: ' + err);
