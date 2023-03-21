@@ -21,8 +21,10 @@ fs.mkdir(folderPath, (err) => {
     fs.writeFile(filePath, 'This is an example text file.', (err) => {
       if (err) {
         console.error(err);
+        alert("file not create");
       } else {
         console.log('File created successfully');
+        alert("file create");
       }
     });
   }
